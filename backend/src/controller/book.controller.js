@@ -1,16 +1,17 @@
 import { Book } from "../model/book.model.js"
 
-export async function getAllBooks(req, res) {
+export async function getAllBooks(req, res, next) {
     try {
         const books = await Book.find().sort({createdAt:-1});
         res.status(200).json(books);
     } catch (error) {
         console.log("Failed to fetch books:", error)
         res.status(500).json({message:"Internal Server Error"});
+        next(error);
     }
 }
 
-export async function getBookById(req, res) {
+export async function getBookById(req, res, next) {
     try {
         const book = await Book.findById(req.params.id);
         if (!book) return res.status(404).json({ message: "Book not found" });
@@ -18,10 +19,11 @@ export async function getBookById(req, res) {
     } catch (error) {
         console.log("Failed to fetch book:", error)
         res.status(500).json({message:"Internal Server Error"});
+        next(error);
     }
 }
 
-export async function createBook(req, res){
+export async function createBook(req, res, next){
     try {
         const {title, author, isbn, year,totalCopies, availableCopies} = req.body;
         console.log('received data:',title, author, isbn, year,totalCopies, availableCopies)
@@ -38,11 +40,12 @@ export async function createBook(req, res){
         res.status(200).json(newBook);
         } catch (error) {
         console.error("Failed to create a book:", error);
-    res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
+        next(error);
     }
 }
 
-export async function updateBookById(req, res) {
+export async function updateBookById(req, res, next) {
     try {
         const {title, author, isbn, year,totalCopies, availableCopies} = req.body;
         const updateBook = await Book.findByIdAndUpdate(
@@ -58,12 +61,13 @@ export async function updateBookById(req, res) {
         res.status(200).json(updateBook);
     } catch (error) {
         console.error("Failed to updating book:", error);
-    res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
+        next(error);
     }
 
 }
 
-export async function deleteBook (req, res) {
+export async function deleteBook (req, res, next) {
     try {
         const deletedBook= await Book.findByIdAndDelete(req.params.id);
         if (!deletedBook) return res.status(404).json({ message: "Book not found" });
@@ -71,5 +75,6 @@ export async function deleteBook (req, res) {
     } catch (error) {
         console.error("Error deleting book:", error);
         res.status(500).json({ message: "Internal server error" });
+        next(error);
     }
 }

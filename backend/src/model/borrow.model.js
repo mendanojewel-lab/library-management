@@ -8,4 +8,5 @@ const borrowSchema = new mongoose.Schema({
   status: { type: String, enum: ["BORROWED", "RETURNED"], default: "BORROWED" },
 }, { timestamps: true });
 
-export const Borrow = mongoose.model("Borrow", borrowSchema);
+const Borrow = mongoose.model("Borrow", borrowSchema);
+export default Borrow;
