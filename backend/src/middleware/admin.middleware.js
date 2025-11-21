@@ -1,6 +1,6 @@
 
 
-export const adminCheck = (req, res, next)=>{
+export const adminCheck = async (req, res, next)=>{
     try {
         if (req.user.role !== 'ADMIN'){
         return res.status(401).json({success:false,message:"Unauthorized"});
