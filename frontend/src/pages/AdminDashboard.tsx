@@ -200,16 +200,16 @@ const AdminDashboard: React.FC = () => {
                   {books.map((b) => (
                     <div
                       key={b._id}
-                      className="p-3 bg-white rounded shadow-sm flex justify-between items-center cursor-pointer"
+                      className=" dark:bg-slate-900 dark:border-none border border-gray-200 p-3 bg-white rounded  shadow-sm flex justify-between items-center cursor-pointer"
                       onClick={() => openBookModal(b)}
                     >
                       <div>
                         <div className="font-medium">{b.title}</div>
-                        <div className="text-sm text-gray-600">
+                        <div className="dark:text-slate-400 text-sm text-gray-600">
                           {b.author} • {b.isbn}
                         </div>
                       </div>
-                      <div className="text-sm text-gray-600">{b.availableCopies}/{b.totalCopies}</div>
+                      <div className="dark:text-slate-400 text-sm text-gray-600">{b.availableCopies}/{b.totalCopies}</div>
                     </div>
                   ))}
                 </div>
@@ -226,11 +226,11 @@ const AdminDashboard: React.FC = () => {
                   {users.map((u) => (
                     <div
                       key={u._id}
-                      className="p-3 bg-white rounded shadow-sm flex justify-between"
+                      className="dark:bg-slate-900 dark:border-none p-3 bg-white rounded border border-gray-200 shadow-sm flex justify-between"
                     >
                       <div>
                         <div className="font-medium">{u.name || u.email}</div>
-                        <div className="text-sm text-gray-600">{u.email} • {u.role}</div>
+                        <div className="text-sm dark:text-slate-400 text-gray-600">{u.email} • {u.role}</div>
                       </div>
                     </div>
                   ))}
@@ -247,9 +247,9 @@ const AdminDashboard: React.FC = () => {
                 <div className="space-y-2">
                   {borrowsAll.length === 0 && <div className="text-sm text-gray-600">No borrows found.</div>}
                   {borrowsAll.map(b => (
-                    <div key={b._id} className="p-3 bg-white rounded shadow-sm">
+                    <div key={b._id} className="dark:bg-slate-900 dark:border-none p-3 bg-white border border-gray-200 rounded shadow-sm">
                       <div className="font-medium">{typeof b.book === 'string' ? 'Book' : (b.book as Book).title}</div>
-                      <div className="text-sm text-gray-600">User: {typeof b.user === 'string' ? b.user : (b.user as User)?.email} • Borrowed: {b.borrowDate ? new Date(b.borrowDate).toLocaleString() : '-'} • Returned: {b.returnDate ? new Date(b.returnDate).toLocaleString() : '—'}</div>
+                      <div className="text-sm dark:text-slate-400 text-gray-600">User: {typeof b.user === 'string' ? b.user : (b.user as User)?.email} • Borrowed: {b.borrowDate ? new Date(b.borrowDate).toLocaleString() : '-'} • Returned: {b.returnDate ? new Date(b.returnDate).toLocaleString() : '—'}</div>
                     </div>
                   ))}
                 </div>

@@ -10,9 +10,9 @@ export const Dialog: React.FC<{
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black/40" onClick={() => onOpenChange?.(false)} />
-      <div className="bg-white rounded-md shadow-lg z-10 w-full max-w-2xl p-4">
-        {title && <div className="mb-3 text-lg font-semibold">{title}</div>}
-        <div>{children}</div>
+      <div className="bg-white dark:bg-slate-900 rounded-md shadow-lg z-10 w-full max-w-2xl p-4 dark:border dark:border-slate-700">
+        {title && <div className="mb-3 text-lg font-semibold text-slate-900 dark:text-white">{title}</div>}
+        <div className="text-slate-900 dark:text-slate-100">{children}</div>
       </div>
     </div>
   )

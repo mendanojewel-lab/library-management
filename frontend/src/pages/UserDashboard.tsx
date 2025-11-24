@@ -139,7 +139,7 @@ const UserDashboard: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search books"
-            className="border px-3 py-2 rounded-md flex-1"
+            className="border px-3 py-2 rounded-md flex-1 dark:bg-slate-900 dark:border-none"
           />
           <Button type="submit">Search</Button>
         </form>
@@ -149,11 +149,11 @@ const UserDashboard: React.FC = () => {
         {books.map((b) => (
           <div
             key={b._id}
-            className="p-3 bg-white rounded shadow-sm flex justify-between items-center"
+            className="dark:bg-slate-900 dark:border-none border border-gray-200 p-3 gap-2 bg-white rounded shadow-sm flex justify-between items-center"
           >
             <div>
               <div className="font-medium">{b.title}</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm dark:text-slate-400 text-gray-600">
                 {b.author} • {b.isbn} • {b.year}
               </div>
               <div className="text-sm">
@@ -184,13 +184,13 @@ const UserDashboard: React.FC = () => {
         {myBorrows.map((m) => (
           <div
             key={m._id}
-            className="p-3 bg-white rounded shadow-sm flex justify-between items-center"
+            className="dark:bg-slate-900 dark:border-none border border-gray-200 p-3 gap-2 bg-white rounded shadow-sm flex justify-between items-center"
           >
             <div>
               <div className="font-medium">
                 {typeof m.book === "string" ? "Book" : (m.book as Book).title}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm dark:text-slate-400 text-gray-600">
                 Borrowed at: {" "}
                 {m.borrowDate ? new Date(m.borrowDate).toLocaleString() : "-"}
               </div>
@@ -212,11 +212,11 @@ const UserDashboard: React.FC = () => {
           <div className="text-sm text-gray-600">No borrow history.</div>
         )}
         {history.map((h) => (
-          <div key={h._id} className="p-3 bg-white rounded shadow-sm">
+          <div key={h._id} className="dark:bg-slate-900 dark:border-none border gap-2 border-gray-200 p-3 bg-white rounded shadow-sm">
             <div className="font-medium">
               {typeof h.book === "string" ? "Book" : (h.book as Book).title}
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm dark:text-slate-400 text-gray-600">
               Borrowed: {" "}
               {h.borrowDate ? new Date(h.borrowDate).toLocaleString() : "-"} •
               Returned: {" "}
