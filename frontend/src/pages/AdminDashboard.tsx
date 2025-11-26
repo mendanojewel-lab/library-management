@@ -23,6 +23,7 @@ type Borrow = {
   _id?: string;
   book?: Book | string;
   user?: User | string;
+  status: "RETURNED" | "BORROWED";
   borrowDate?: string;
   dueDate?: string;
   returnDate?: string | null;
@@ -296,7 +297,7 @@ const AdminDashboard: React.FC = () => {
 
                     return (
                       <>
-                        {!b.returnDate && (
+                        {b.status === "BORROWED" && (
                           <div
                             key={b._id}
                             className={`dark:bg-slate-900 dark:border-none p-3 border rounded shadow-sm ${
@@ -376,7 +377,7 @@ const AdminDashboard: React.FC = () => {
 
                     return (
                       <>
-                        {b.returnDate && (
+                        {b.status === "RETURNED" && (
                           <div
                             key={b._id}
                             className={`dark:bg-slate-900 dark:border-none p-3 border rounded shadow-sm ${
