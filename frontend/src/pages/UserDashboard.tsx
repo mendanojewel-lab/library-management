@@ -43,7 +43,7 @@ const UserDashboard: React.FC = () => {
 
   const fetchBooks = async (q: string = '') => {
     try {
-      const url = new URL('http://localhost:3000/api/books')
+      const url = new URL(`${import.meta.env.VITE_SERVER_URL}/api/books`)
       if (q) url.searchParams.set('search', q)
       const res = await fetch(url.toString(), {
         headers: { ...authHeaders },
@@ -58,7 +58,7 @@ const UserDashboard: React.FC = () => {
 
   const fetchMyBorrows = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/borrows/my-borrows", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/borrows/my-borrows`, {
         headers: { ...authHeaders },
       });
       const data = await res.json();
@@ -71,7 +71,7 @@ const UserDashboard: React.FC = () => {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/borrows/history", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/borrows/history`, {
         headers: { ...authHeaders },
       });
       const data = await res.json();
@@ -92,7 +92,7 @@ const UserDashboard: React.FC = () => {
   const borrowBook = async (bookId?: string) => {
     if (!bookId) return;
     try {
-      const res = await fetch("http://localhost:3000/api/borrows/borrow", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/borrows/borrow`, {
         method: "POST",
         headers: { ...authHeaders },
         body: JSON.stringify({ bookId }),
@@ -111,7 +111,7 @@ const UserDashboard: React.FC = () => {
   const returnBorrow = async (borrowId?: string) => {
     if (!borrowId) return;
     try {
-      const res = await fetch("http://localhost:3000/api/borrows/return", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/borrows/return`, {
         method: "POST",
         headers: { ...authHeaders },
         body: JSON.stringify({ borrowId }),

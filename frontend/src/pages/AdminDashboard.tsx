@@ -56,7 +56,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchBooks = async (q = "") => {
     try {
-      const url = new URL("http://localhost:3000/api/books");
+      const url = new URL(`${import.meta.env.VITE_SERVER_URL}/api/books`);
       if (q) url.searchParams.set("search", q);
       const res = await fetch(url.toString(), { headers: authHeaders });
       const data = await res.json();
@@ -69,7 +69,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/users", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users`, {
         headers: authHeaders,
       });
       const data = await res.json();
@@ -82,7 +82,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchAllBorrows = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/borrows/all", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/borrows/all`, {
         headers: authHeaders,
       });
       const data = await res.json();
@@ -104,13 +104,13 @@ const AdminDashboard: React.FC = () => {
     try {
       if (editing) {
         const res = await fetch(
-          `http://localhost:3000/api/books/${editing._id}`,
+          `${import.meta.env.VITE_SERVER_URL}/api/books/${editing._id}`,
           { method: "PUT", headers: authHeaders, body: JSON.stringify(form) }
         );
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Update failed");
       } else {
-        const res = await fetch("http://localhost:3000/api/books", {
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/books`, {
           method: "POST",
           headers: authHeaders,
           body: JSON.stringify(form),
@@ -148,7 +148,7 @@ const AdminDashboard: React.FC = () => {
   const del = async (id?: string) => {
     if (!id) return;
     try {
-      const res = await fetch(`http://localhost:3000/api/books/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/books/${id}`, {
         method: "DELETE",
         headers: authHeaders,
       });
