@@ -88,6 +88,7 @@ const AdminDashboard: React.FC = () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to fetch borrows");
+      console.log(data)
       setBorrowsAll(data || []);
     } catch (err: any) {
       setError(err.message);
