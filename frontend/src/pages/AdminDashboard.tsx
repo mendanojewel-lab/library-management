@@ -165,16 +165,16 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const isOverdue = (borrow: Borrow) => {
-    if (!borrow.dueDate || borrow.returnDate) return false;
-    return new Date(borrow.dueDate) < new Date();
-  };
+  // const isOverdue = (borrow: Borrow) => {
+  //   if (!borrow.dueDate || borrow.returnDate) return false;
+  //   return new Date(borrow.dueDate) < new Date();
+  // };
 
-  const daysLeft = (borrow: Borrow) => {
-    if (!borrow.dueDate) return null;
-    const diff = new Date(borrow.dueDate).getTime() - new Date().getTime();
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
-  };
+  // const daysLeft = (borrow: Borrow) => {
+  //   if (!borrow.dueDate) return null;
+  //   const diff = new Date(borrow.dueDate).getTime() - new Date().getTime();
+  //   return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  // };
 
   return (
     <div>
