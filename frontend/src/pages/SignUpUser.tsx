@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
 import { useAuth } from '../context/AuthContext'
+import { Link } from 'react-router-dom'
 
 const SignUpUser: React.FC = () => {
   const [name, setName] = useState('')
@@ -68,12 +69,12 @@ const SignUpUser: React.FC = () => {
         {/* Footer */}
         <div className="text-center mt-6 text-sm text-gray-600 dark:text-gray-400">
           Already have an account?{" "}
-          <a
-            href="/signin"
+          <Link
+            to="/signin"
             className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
           >
             Sign in
-          </a>
+          </Link>
         </div>
       </div>
     </div>
